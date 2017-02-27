@@ -1,5 +1,9 @@
-<div class="app-table">
-  <h2 class="app-table-name">{{table.name}}</h2>
+<div class="app-table" [ngClass]="{'hidden': table.hidden}">
+  <div class="app-table-header">
+    <h2 (click)="selectTable($event)" class="app-table-name">{{table.name}}</h2>
+    <a *ngIf="userRole === 'admin'" class="remove-table-btn"><span class="glyphicon glyphicon-remove" aria-hidden="true"
+                                      (click)="removeTable($event)"></span></a>
+  </div>
   <ul class="app-table-participants row">
     <li class="col-md-2" *ngFor="let participant of participants" [ngClass]="{'active': !participant.available}">
       <span class="glyphicon glyphicon-user" aria-hidden="true"></span>

@@ -5,11 +5,13 @@
   padding: 5px 10px;
   background: #337ab7;
   &-name {
-    margin: 0;
-    font-size: 15px;
+    min-height: 28px;
+    margin:0 18px 0 0;
+    font-size: 13px;
     font-weight:bold;
     color: #fff;
     white-space: normal;
+    cursor: pointer;
   }
   &-participants {
     margin: 10px 0 0;
@@ -23,5 +25,18 @@
         color: #fff;
       }
     }
+  }
+  &-header {
+    position:relative;
+  }
+}
+.remove-table-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #333;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
   }
 }

@@ -2,8 +2,16 @@
   <div class="col-md-12">
     <ul class="table-container">
       <li class="table-wrap" *ngFor="let table of tables">
-        <app-table [table]="table"></app-table>
+        <app-table [table]="table" (selectTableEvent)="handleSelectTable($event)"
+                   (deleteTableEvent)="handleDeleteTable($event)"></app-table>
       </li>
     </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <app-table-form *ngIf="userRole === 'admin'" [tableToEdit]="selectedTable" (editTableEvent)="handleEditTable($event)"
+                    (cancelEditEvent)="handleCancelEdit()" (addTableEvent)="handleSaveTable($event)"></app-table-form>
   </div>
 </div>

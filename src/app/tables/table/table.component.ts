@@ -1,4 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Table} from '../table';
 
 @Component({
   selector: 'app-table',
@@ -6,21 +7,33 @@ import {Component, OnInit, Input} from '@angular/core';
   styleUrls: ['./table.component.less']
 })
 export class TableComponent implements OnInit {
-  maxParticipants: number = 12;
+  @Input() table: Table;
+  @Output() deleteTableEvent = new EventEmitter();
+  @Output() selectTableEvent = new EventEmitter();
+
+  private MAX_PARTICIPANTS: number = 12;
   participants: any = [];
-  @Input() table: any;
+  userRole: string = localStorage.getItem('user_role');
 
   constructor() {
   }
 
   ngOnInit() {
-    for (let i = 0; i < this.maxParticipants; i++) {
+    for (let i = 0; i < this.MAX_PARTICIPANTS; i++) {
       if (i < this.table.participants) {
         this.participants.push({available: false});
       } else {
         this.participants.push({available: true});
       }
     }
+  }
+
+  removeTable() {
+    this.deleteTableEvent.emit(this.table);
+  }
+
+  selectTable(){
+    this.selectTableEvent.emit(this.table);
   }
 
 }

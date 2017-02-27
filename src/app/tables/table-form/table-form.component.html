@@ -1,0 +1,47 @@
+<div class="table-form">
+  <h2 class="table-form-header"><span *ngIf="!table.id">Add Table</span><span *ngIf="table.id">Edit Table</span></h2>
+  <form [formGroup]="tableForm">
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (tableForm.controls.name.errors?.required && (tableForm.controls.name.dirty || tableForm.controls.name.touched))}">
+      <label for="name">Name</label>
+
+      <input id="name" formControlName="name" class="form-control" type="text" required/>
+
+      <p class="control-label"
+         *ngIf="tableForm.controls.name.errors?.required && (tableForm.controls.name.dirty || tableForm.controls.name.touched)">
+        Field 'Name' is required
+      </p>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (tableForm.controls.participants.errors?.number || tableForm.controls.participants.errors?.required || tableForm.controls.participants.errors?.range) && (tableForm.controls.participants.dirty || tableForm.controls.participants.touched)}">
+      <label for="participants">Participants</label>
+
+      <input id="participants" formControlName="participants" class="form-control" type="text" name="participants"
+             number required/>
+
+      <p class="control-label"
+         *ngIf="tableForm.controls.participants.errors?.number && (tableForm.controls.participants.dirty || tableForm.controls.participants.touched)">
+        Field 'Participants' must be a number
+      </p>
+      <p class="control-label"
+         *ngIf="tableForm.controls.participants.errors?.required && (tableForm.controls.participants.dirty || tableForm.controls.participants.touched)">
+        Field 'Participants' is required
+      </p>
+      <p class="control-label"
+         *ngIf="tableForm.controls.participants.errors?.range && (tableForm.controls.participants.dirty || tableForm.controls.participants.touched)">
+        Value out of range
+      </p>
+    </div>
+
+    <div class="form-controls" *ngIf="!table.id">
+      <button type="submit" [disabled]="!tableForm.valid" (click)="saveTable()" class="btn btn-primary">Add</button>
+      <button type="button" (click)="clearForm()" class="btn btn-default">Clear</button>
+    </div>
+    <div class="form-controls" *ngIf="table.id">
+      <button type="submit" [disabled]="!tableForm.valid" (click)="saveTable()" class="btn btn-primary">Save</button>
+      <button type="button" (click)="cancelEdit()" class="btn btn-default">Cancel</button>
+    </div>
+  </form>
+</div>
