@@ -1,0 +1,27 @@
+.app-table {
+  width: 220px;
+  margin: 5px 10px;
+  border-radius: 6px;
+  padding: 5px 10px;
+  background: #337ab7;
+  &-name {
+    margin: 0;
+    font-size: 15px;
+    font-weight:bold;
+    color: #fff;
+    white-space: normal;
+  }
+  &-participants {
+    margin: 10px 0 0;
+    padding: 0;
+    border: 1px solid #fff;
+    list-style-type: none;
+    & li {
+      padding: 5px;
+      text-align: center;
+      &.active {
+        color: #fff;
+      }
+    }
+  }
+}

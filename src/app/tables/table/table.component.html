@@ -1,0 +1,8 @@
+<div class="app-table">
+  <h2 class="app-table-name">{{table.name}}</h2>
+  <ul class="app-table-participants row">
+    <li class="col-md-2" *ngFor="let participant of participants" [ngClass]="{'active': !participant.available}">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+    </li>
+  </ul>
+</div>
