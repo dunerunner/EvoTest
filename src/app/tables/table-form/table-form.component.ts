@@ -36,7 +36,7 @@ export class TableFormComponent implements OnInit {
     }
   }
 
-  saveTable() {
+  saveTable(): void {
     this.table = new Table(this.tableForm.value.name, this.tableForm.value.participants);
     if (this.tableToEdit) {
       this.table.id = this.tableToEdit.id;
@@ -54,12 +54,12 @@ export class TableFormComponent implements OnInit {
 
   }
 
-  clearForm() {
+  clearForm(): void {
     this.table = new Table('', null);
     this.tableForm.reset();
   }
 
-  cancelEdit() {
+  cancelEdit(): void {
     this.cancelEditEvent.emit(this.table);
     this.clearForm();
   }

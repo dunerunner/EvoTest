@@ -28,11 +28,11 @@ export class TableComponent implements OnInit {
     }
   }
 
-  removeTable() {
+  removeTable(): void {
     this.deleteTableEvent.emit(this.table);
   }
 
-  selectTable(){
+  selectTable(): void {
     this.selectTableEvent.emit(this.table);
   }
 

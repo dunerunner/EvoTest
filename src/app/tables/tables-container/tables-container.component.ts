@@ -90,13 +90,13 @@ export class TablesContainerComponent implements OnInit {
     this.tables.splice(index + 1, 0, table);
   }
 
-  removeTable(id: number) {
+  removeTable(id: number): void {
     this.tables = this.tables.filter((el) => {
       return el.id !== id;
     });
   }
 
-  updateTable(table: Table) {
+  updateTable(table: Table): void {
     //noinspection TypeScriptUnresolvedFunction
     let index = this.tables.findIndex((el) => {
       return el.id === table.id;
@@ -105,7 +105,7 @@ export class TablesContainerComponent implements OnInit {
     this.tables[index] = table;
   }
 
-  showTable(id: number) {
+  showTable(id: number): void {
     //noinspection TypeScriptUnresolvedFunction
     let tableToUpdate = this.tables.find((el) => {
       return el.id === id;
@@ -113,7 +113,7 @@ export class TablesContainerComponent implements OnInit {
     tableToUpdate.hidden = false;
   }
 
-  handleSaveTable(table: Table) {
+  handleSaveTable(table: Table): void {
     table.id = 1;
     let tableSaveEvent = {
       "$type": "add_table",
@@ -123,7 +123,7 @@ export class TablesContainerComponent implements OnInit {
     this.sendEvent(tableSaveEvent);
   }
 
-  handleEditTable(table: Table) {
+  handleEditTable(table: Table): void {
     let updateTableEvent = {
       "$type": "update_table",
       "table": table
@@ -131,7 +131,7 @@ export class TablesContainerComponent implements OnInit {
     this.sendEvent(updateTableEvent);
   }
 
-  handleDeleteTable(table: Table) {
+  handleDeleteTable(table: Table): void {
     let tableDeleteEvent = {
       "$type": "remove_table",
       "id": table.id
@@ -140,15 +140,15 @@ export class TablesContainerComponent implements OnInit {
     this.sendEvent(tableDeleteEvent);
   }
 
-  handleSelectTable(table: Table) {
+  handleSelectTable(table: Table): void {
     this.selectedTable = table;
   }
 
-  handleCancelEdit() {
+  handleCancelEdit(): void {
     this.selectedTable = new Table('', null);
   }
 
-  sendEvent(event: any) {
+  sendEvent(event: any): void {
     this.ws.send(JSON.stringify(event)).subscribe();
   }
 }
